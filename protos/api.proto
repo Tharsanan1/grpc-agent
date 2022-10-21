@@ -1,0 +1,11 @@
+syntax = "proto3";
+option go_package = "./api";
+import "google/protobuf/wrappers.proto";
+
+service APIService {
+    rpc createAPI(API) returns (google.protobuf.BoolValue);
+}
+
+message API {
+    string apiUUID = 1;
+}
