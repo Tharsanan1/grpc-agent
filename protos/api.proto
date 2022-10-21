@@ -1,11 +1,31 @@
 syntax = "proto3";
 option go_package = "./api";
-import "google/protobuf/wrappers.proto";
 
 service APIService {
-    rpc createAPI(API) returns (google.protobuf.BoolValue);
+    rpc createAPI(API) returns (Response);
 }
 
 message API {
     string apiUUID = 1;
+    string apiProvider = 2;
+    string apiVersion = 3;
+    string apiName = 4;
+    string context = 5;
+    string contextTemplate = 6;
+    string apiTire = 7;
+    string apiType = 8;
+    string organization = 9;
+    string gatewayVendor = 10;
+    string createdBy = 11;
+    string createdTime = 12;
+    string updatedBy = 13;
+    string updatedTime = 14;
+    string status = 15;
+    string versionComparable = 16;
+    string logLevel = 17;
+    int64 revisionsCreated = 18;
+}
+
+message Response {
+    bool result = 1;
 }

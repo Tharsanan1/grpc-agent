@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -23,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type APIServiceClient interface {
-	CreateAPI(ctx context.Context, in *API, opts ...grpc.CallOption) (*wrapperspb.BoolValue, error)
+	CreateAPI(ctx context.Context, in *API, opts ...grpc.CallOption) (*Response, error)
 }
 
 type aPIServiceClient struct {
@@ -34,8 +33,8 @@ func NewAPIServiceClient(cc grpc.ClientConnInterface) APIServiceClient {
 	return &aPIServiceClient{cc}
 }
 
-func (c *aPIServiceClient) CreateAPI(ctx context.Context, in *API, opts ...grpc.CallOption) (*wrapperspb.BoolValue, error) {
-	out := new(wrapperspb.BoolValue)
+func (c *aPIServiceClient) CreateAPI(ctx context.Context, in *API, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
 	err := c.cc.Invoke(ctx, "/APIService/createAPI", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -47,7 +46,7 @@ func (c *aPIServiceClient) CreateAPI(ctx context.Context, in *API, opts ...grpc.
 // All implementations must embed UnimplementedAPIServiceServer
 // for forward compatibility
 type APIServiceServer interface {
-	CreateAPI(context.Context, *API) (*wrapperspb.BoolValue, error)
+	CreateAPI(context.Context, *API) (*Response, error)
 	mustEmbedUnimplementedAPIServiceServer()
 }
 
@@ -55,7 +54,7 @@ type APIServiceServer interface {
 type UnimplementedAPIServiceServer struct {
 }
 
-func (UnimplementedAPIServiceServer) CreateAPI(context.Context, *API) (*wrapperspb.BoolValue, error) {
+func (UnimplementedAPIServiceServer) CreateAPI(context.Context, *API) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateAPI not implemented")
 }
 func (UnimplementedAPIServiceServer) mustEmbedUnimplementedAPIServiceServer() {}

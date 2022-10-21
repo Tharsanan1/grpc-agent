@@ -1,0 +1,15 @@
+syntax = "proto3";
+option go_package = "./swagger";
+
+service SwaggerService {
+    rpc createSwagger(Swagger) returns (Response);
+}
+
+message Swagger {
+    string apiUUID = 1;
+    string swagger = 2;
+}
+
+message Response {
+    bool result = 1;
+}
