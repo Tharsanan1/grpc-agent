@@ -1,0 +1,5 @@
+syntax = "proto3";
+option go_package = "github.com/Tharsanan1/grpc-agent/grpc/common";
+message Response {
+    bool result = 1;
+}

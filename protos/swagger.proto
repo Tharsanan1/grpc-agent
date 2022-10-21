@@ -1,5 +1,6 @@
 syntax = "proto3";
-option go_package = "./swagger";
+option go_package = "github.com/Tharsanan1/grpc-agent/grpc/swagger";
+import "protos/common.proto";
 
 service SwaggerService {
     rpc createSwagger(Swagger) returns (Response);
@@ -8,8 +9,4 @@ service SwaggerService {
 message Swagger {
     string apiUUID = 1;
     string swagger = 2;
-}
-
-message Response {
-    bool result = 1;
 }

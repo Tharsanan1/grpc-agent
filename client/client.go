@@ -7,8 +7,8 @@ import (
 
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc"
-	apiProtos "github.com/Tharsanan1/grpc-agent/protos/api"
-	swaggerProtos "github.com/Tharsanan1/grpc-agent/protos/swagger"
+	apiProtos "github.com/Tharsanan1/grpc-agent/grpc/api"
+	swaggerProtos "github.com/Tharsanan1/grpc-agent/grpc/swagger"
 )
 
 func main() {

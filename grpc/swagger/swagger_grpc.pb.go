@@ -8,6 +8,7 @@ package swagger
 
 import (
 	context "context"
+	common "github.com/Tharsanan1/grpc-agent/grpc/common"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -22,7 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SwaggerServiceClient interface {
-	CreateSwagger(ctx context.Context, in *Swagger, opts ...grpc.CallOption) (*Response, error)
+	CreateSwagger(ctx context.Context, in *Swagger, opts ...grpc.CallOption) (*common.Response, error)
 }
 
 type swaggerServiceClient struct {
@@ -33,8 +34,8 @@ func NewSwaggerServiceClient(cc grpc.ClientConnInterface) SwaggerServiceClient {
 	return &swaggerServiceClient{cc}
 }
 
-func (c *swaggerServiceClient) CreateSwagger(ctx context.Context, in *Swagger, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *swaggerServiceClient) CreateSwagger(ctx context.Context, in *Swagger, opts ...grpc.CallOption) (*common.Response, error) {
+	out := new(common.Response)
 	err := c.cc.Invoke(ctx, "/SwaggerService/createSwagger", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -46,7 +47,7 @@ func (c *swaggerServiceClient) CreateSwagger(ctx context.Context, in *Swagger, o
 // All implementations must embed UnimplementedSwaggerServiceServer
 // for forward compatibility
 type SwaggerServiceServer interface {
-	CreateSwagger(context.Context, *Swagger) (*Response, error)
+	CreateSwagger(context.Context, *Swagger) (*common.Response, error)
 	mustEmbedUnimplementedSwaggerServiceServer()
 }
 
@@ -54,7 +55,7 @@ type SwaggerServiceServer interface {
 type UnimplementedSwaggerServiceServer struct {
 }
 
-func (UnimplementedSwaggerServiceServer) CreateSwagger(context.Context, *Swagger) (*Response, error) {
+func (UnimplementedSwaggerServiceServer) CreateSwagger(context.Context, *Swagger) (*common.Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateSwagger not implemented")
 }
 func (UnimplementedSwaggerServiceServer) mustEmbedUnimplementedSwaggerServiceServer() {}
